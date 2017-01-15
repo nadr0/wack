@@ -6,6 +6,9 @@ var request    = require('request');
 var RssHandler = require('./rssHandler.js').RssHandler;
 var RssRequest = require('./request.js').Request;
 
+/**
+  * Application to run everything!
+  */
 function App(options) {
 
     this.feedparser = null;
@@ -50,6 +53,9 @@ App.prototype.init = function() {
 
 }
 
+/**
+  * Sets up the feedparser for any rss request for that can be parsed
+  */
 App.prototype.initFeedParser = function() {
 
     this.feedparser.on('error', function (error) {
@@ -69,6 +75,7 @@ App.prototype.initFeedParser = function() {
       // reding item at a time from the rss feed
       while (item = stream.read()) {
 
+          // Check each story in the RSS feed
           _this.rssHandler.checkParsedXML(item);
 
       }

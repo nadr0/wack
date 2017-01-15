@@ -42,10 +42,9 @@ Parser.prototype.retrieve3NER = function(text) {
         if(res && res.entities) {
             // Person in string formart to tweet about
             var person = res.entities.PERSON[0];
-            console.log(person);
+
             // Clear names
             person = person.replace(/\.+/g, '');
-            console.log('Parsed - ', person);
 
             // Check firebase
             database.retrieve(person, function(snapshot) {

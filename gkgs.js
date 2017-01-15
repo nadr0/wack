@@ -5,6 +5,12 @@
 
 var request = require('request');
 
+/**
+  * Makes a request to the google knowledge graph search
+  * Takes the top request from the list of 10 requests.
+  * @param {string} search - mainly names right now, i.g "John Bob"
+  * @param {function} callback - callback function
+  */
 function makeGoogleRequest(search, callback) {
 
     // Format string for url encoding
@@ -16,8 +22,6 @@ function makeGoogleRequest(search, callback) {
     request({url: api_url, json:true}, function(error, response, body){
 
         if(!error && response.statusCode == 200) {
-
-        //    console.log(body.itemListElement[0]);
 
            // check if there is one result
            if(body.itemListElement.length > 0) {
