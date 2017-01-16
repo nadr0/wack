@@ -34,40 +34,40 @@ Parser.prototype.retrieve3NER = function(text) {
         host:'localhost'
     }, text , function(err, res){
 
-        // NER data
-        // resulting data
-        //=> { LOCATION: [ 'Wikipedia' ], ORGANIZATION: [ 'Wikimedia Foundation'] }
-        // console.log(res.entities);
-
         if(res && res.entities) {
             // Person in string formart to tweet about
             var person = res.entities.PERSON[0];
 
-            // Clear names
-            person = person.replace(/\.+/g, '');
+            // If no person is retrieved
+            if(person) {
 
-            // Check firebase
-            database.retrieve(person, function(snapshot) {
-                // Not in the database
-                // Mark seen
-                if(snapshot.val() === null) {
+                // Clear names
+                person = person.replace(/\.+/g, '');
 
-                    // Check if you should only print the people instead of tweeting
-                    if(!appOptions.PRINT_ONLY) {
-                        // database.markSeen(person);
+                // Check firebase
+                database.retrieve(person, function(snapshot) {
+                    // Not in the database
+                    // Mark seen
+                    if(snapshot.val() === null) {
 
-                        _this.message.create(person);
+                        // Check if you should only print the people instead of tweeting
+                        if(!appOptions.PRINT_ONLY) {
+                            database.markSeen(person);
 
-                    }else {
+                            _this.message.create(person);
 
-                        // Print preview what is gonna be tweeted
-                        console.log(person);
+                        }else {
+
+                            // Print preview what is gonna be tweeted
+                            console.log(person);
+
+                        }
 
                     }
 
-                }
+                });
 
-            });
+            }
         }
 
     });

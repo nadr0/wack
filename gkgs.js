@@ -33,7 +33,10 @@ function makeGoogleRequest(search, callback) {
                callback(null);
 
            }
-        }
+       }else {
+           console.log(error);
+           throw new Error('Something with google knowledge graph api call broke.');
+       }
 
     })
 

@@ -14,8 +14,6 @@ RssHandler.prototype.checkParsedXML = function(item) {
     // Model only searchs keywords for 'Famous People'
     var itemHasKeywordsInTitle = this.selector.doesTextHaveKeywords(item['title']);
 
-    // var itemHasKeywordsInDescription = this.selector.doesTextHaveKeywords(item['description']);
-
     var parsedTitle       = null;
     var parsedDescription = null;
     var pubdate           = item['pubdate'];
@@ -28,11 +26,6 @@ RssHandler.prototype.checkParsedXML = function(item) {
         if(itemHasKeywordsInTitle) {
             this.parser.retrieve3NER(item['title']);
         }
-
-        // Has keyword(s) in description
-        // if(itemHasKeywordsInDescription) {
-            // this.parser.retrieve3NER(item['description']);
-        // }
 
     } else {
 

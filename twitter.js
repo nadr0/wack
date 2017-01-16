@@ -15,17 +15,17 @@ var oa;
 // Tokens for tweeting
 var site = "https://api.twitter.com/1.1/statuses/update.json";
 
-oa = new OAuth(
-    "https://twitter.com/oauth/request_token"
-  , "https://twitter.com/oauth/access_token"
-  , KEY
-  , SECRET
-  , "1.0A"
-  , "http://" + domain + ":" + port + "/twitter/authn/callback"
-  , "HMAC-SHA1"
-  );
-
 function makeTweet(status, cb) {
+
+    oa = new OAuth(
+        "https://twitter.com/oauth/request_token"
+      , "https://twitter.com/oauth/access_token"
+      , KEY
+      , SECRET
+      , "1.0A"
+      , "http://" + domain + ":" + port + "/"
+      , "HMAC-SHA1"
+      );
 
     var statusToTweet = {"status": status};
 

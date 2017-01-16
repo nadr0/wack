@@ -56,10 +56,9 @@ Message.prototype.create = function(search) {
 
                 var tweet = '#' + hashtagPerson + ' is dead :( #RIP' + hashtags;
 
-                // twitter.tweet(tweet, function(){
-                    // console.log('posted a tweet');
-                // })
-                console.log(tweet);
+                twitter.tweet(tweet, function(){
+                    console.log('posted a tweet');
+                })
             }
 
         }else {
@@ -67,10 +66,9 @@ Message.prototype.create = function(search) {
 
             var tweet = '#'+ hashtagPerson + ' is dead :( #RIP';
 
-            // twitter.tweet(tweet, function(){
-                // console.log('posted a tweet');
-            // })
-            console.log(tweet);
+            twitter.tweet(tweet, function(){
+                console.log('posted a tweet');
+            })
         }
 
     });

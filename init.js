@@ -61,6 +61,8 @@ App.prototype.initFeedParser = function() {
     this.feedparser.on('error', function (error) {
       // always handle errors
       console.log(error);
+      throw new Error('feedparser is broken.');
+
     });
 
     // for callback on feedparser
