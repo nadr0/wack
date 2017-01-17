@@ -59,7 +59,7 @@ Message.prototype.create = function(search) {
 
                 if(!appOptions.PRINT_ONLY) {
                     twitter.tweet(tweet, function(){
-                        console.log('posted a tweet');
+                        console.log(tweet,' - posted a tweet');
                     })
                 }else {
                     console.log(tweet);
@@ -74,7 +74,7 @@ Message.prototype.create = function(search) {
 
             if(!appOptions.PRINT_ONLY) {
                 twitter.tweet(tweet, function(){
-                    console.log('posted a tweet');
+                    console.log(tweet, ' - posted a tweet');
                 })
             }else {
                 console.log(tweet);

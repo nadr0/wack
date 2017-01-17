@@ -21,7 +21,7 @@ function markAsSeen(text) {
 
     // HARDCODED : 'dead' for dead famous people
     firebase.database().ref().child('dead/' + text).set(true).then(function(snapshot){
-        console.log(text, 'marked as seen.');
+        console.log('(Firebase) ',text, 'marked as seen.');
     })
 
 }
