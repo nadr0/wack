@@ -27,15 +27,24 @@ To make the tweets a bit more personal.
 ###### npm
 We need some important javascript packages.
 
+###### stanford NER
+A server ran locally which handles NER parsing of text. Gives us the name of the dead person.
+
+Heres my bash file to start the server. Also the README inside the stanford package is well written.
+```
+#!/bin/sh
+# Put this in the directory in which you extracted the STANFORD NER package.
+java -mx1000m -cp stanford-ner-2015-12-09/stanford-ner.jar:stanford-ner-2015-12-09/lib/* edu.stanford.nlp.ie.NERServer  -loadClassifier stanford-ner-2015-12-09/classifiers/english.all.3class.distsim.crf.ser.gz -port 8080 -outputFormat inlineXML
+```
 
 ### Setting up API keys
 Since I am providing source code I don't want my API keys in the code! I used environment variables, feel free to do whatever you want with this but here is an outline for your API keys.
 
-Create a bash file with the information below, run it with ```source`` to set the environment variables.
+Create a bash file with the information below, run it with ``source`` to set the environment variables.
 ```
 # Twitter API
 export CONSUMER_KEY="{your key}"
-export CONSUMER_SECRET="{your key}"s
+export CONSUMER_SECRET="{your key}"
 export ACCESS_TOKEN="{your key}"
 export ACCESS_TOKEN_SECRET="{your key}"
 
@@ -54,13 +63,31 @@ export FIREBASE_STORAGE_BUCKET="{your key}"
 export FIREBASE_MESSAGE_ID="{your key}"
 ```
 
+## Running the application
+
+- Start the stanford NER server
+- Start the node.js server, make sure in ``appOptions.js`` has print only to false.
+- Stuff will be tweeting!
+
+My setup for running
+```
+    // making sure environment variables are set
+    source env-setup.sh
+
+    // starting stanford ner server in another terminal or & parameter
+    ./ner-server.sh
+
+    // start node server
+    node server.js
+```
+
 ### Overview of how the application works
 
-The main application lives in *init.js* and is started from *server.js*.
+The main application lives in ``init.js`` and is started from ``server.js``.
 
 Right now the application only parses one website when it runs. So giving it more websites does nothing.
 
-```
+``` Javascript
 const wack = require('./init.js').app;
 const wackApp = new wack({
     websites:{
@@ -68,3 +95,13 @@ const wackApp = new wack({
     }
 });
 ```
+
+Then the website given gets parsed and searched.
+
+An article from the RSS feed will only get chosen if it has certain keywords (found in ``selctor.js``) and the publication was posted within 24 hours of running the code.
+
+After the article is chosen the title is sent to the stanford NER server for parsing the person name, the N in NER.
+
+Once the name is found it is searched with the google knowledge graph to get any description information about the person to add as hashtags.
+
+Finally, the tweet is composed and sent. Along with saving it in the firebase database.
