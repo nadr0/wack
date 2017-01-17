@@ -53,15 +53,9 @@ Parser.prototype.retrieve3NER = function(text) {
                         // Check if you should only print the people instead of tweeting
                         if(!appOptions.PRINT_ONLY) {
                             database.markSeen(person);
-
-                            _this.message.create(person);
-
-                        }else {
-
-                            // Print preview what is gonna be tweeted
-                            console.log(person);
-
                         }
+
+                        _this.message.create(person);
 
                     }
 

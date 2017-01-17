@@ -1,7 +1,8 @@
 // Tweets the dead person
 
-var gkgs    = require('./gkgs.js');
-var twitter = require('./twitter.js');
+var gkgs       = require('./gkgs.js');
+var twitter    = require('./twitter.js');
+var appOptions = require('./appOptions.js').options;
 
 /**
   * Message object handles google knowledge graph search and posting the tweet
@@ -54,11 +55,16 @@ Message.prototype.create = function(search) {
                 // Get the hashtags to add at the end of the tweet
                 var hashtags = _this.createHashTags(body.result.description);
 
-                var tweet = '#' + hashtagPerson + ' is dead :( #RIP' + hashtags;
+                var tweet = '#' + hashtagPerson + ' is dead :( #RIP ' + hashtags;
 
-                twitter.tweet(tweet, function(){
-                    console.log('posted a tweet');
-                })
+                if(!appOptions.PRINT_ONLY) {
+                    twitter.tweet(tweet, function(){
+                        console.log('posted a tweet');
+                    })
+                }else {
+                    console.log(tweet);
+                }
+
             }
 
         }else {
@@ -66,9 +72,14 @@ Message.prototype.create = function(search) {
 
             var tweet = '#'+ hashtagPerson + ' is dead :( #RIP';
 
-            twitter.tweet(tweet, function(){
-                console.log('posted a tweet');
-            })
+            if(!appOptions.PRINT_ONLY) {
+                twitter.tweet(tweet, function(){
+                    console.log('posted a tweet');
+                })
+            }else {
+                console.log(tweet);
+            }
+
         }
 
     });
@@ -86,7 +97,7 @@ Message.prototype.createHashTags = function(text) {
     text = text.replace(/-+/g,' ');
 
     // Replace all spaces with a hashtag
-    text = text.replace(/\s+/g,'#');
+    text = text.replace(/\s+/g,' #');
 
     // Leading word will not have a hashtag so add it
     text = '#' + text;
