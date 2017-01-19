@@ -7,7 +7,7 @@ Basic functionality is implemented, nothing fancy.
 - [node.js](https://nodejs.org/en/)
 - [twitter app](https://apps.twitter.com/)
 - [google firebase](https://firebase.google.com/)
-- [google knowledge graph](https://www.google.com/intl/bn/insidesearch/features/search/knowledge.html)
+- [google knowledge graph](https://www.google.com/intl/bn/insidesearch/features/search/knowledge.html), API key is provided under google's API manager.
 - [npm](https://www.npmjs.com/)
 - [stanford NER](http://nlp.stanford.edu/software/CRF-NER.shtml), download zip under **getting started** section.
 
