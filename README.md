@@ -118,3 +118,5 @@ After the article is chosen the title is sent to the stanford NER server for par
 Once the name is found it is searched with the google knowledge graph to get any description information about the person to add as hashtags.
 
 Finally, the tweet is composed and sent along with saving it in the firebase database.
+
+Once the RSS feed is parsed the application is done and sits there so you can shut down the NER and node.js server. Think of running it as an executable as of right now. You can change ``site:"http://rss.nytimes.com/services/xml/rss/nyt/Obituaries.xml"`` to a different RSS feed then run the servers again to search for more tweets. This will be changed in the future to make it easier. 
