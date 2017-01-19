@@ -20,7 +20,7 @@ We need a twitter application with our twitter account to be able to post tweets
 ###### google firebase
 A database to store what dead people we have tweeted about. You wouldn't want to post a tweet about a dead person twice.
 
-What the firebase real time database looks like for this application.
+What the firebase real time database looks like.
 ```
 {your project name}
 |--"dead"
@@ -39,9 +39,11 @@ I query the knowledge graph with the persons name to get some description about 
 We need some important javascript packages.
 
 ###### stanford NER
-A server ran locally which handles NER parsing of text. Gives us the name of the dead person.
+A server ran locally which handles NER parsing of text. i.e. Gives us the name of the dead person.
 
 Heres my bash file to start the server. Also the README inside the stanford package is well written.
+
+Note: `stanford-ner-2015-12-09` is the name of the folder. I believe when the code is downloaded it saves the folder name with the current date with the year being one off. You will need to change this folder name for your file. 
 ``` Bash
 # I named this file ner-server.sh
 #!/bin/sh
