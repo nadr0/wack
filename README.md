@@ -1,6 +1,8 @@
 # wack
-This is a node.js application which automatically posts tweets about famous dead people.
+This is a node.js application which automatically posts a tweet when a famous person dies.
 Basic functionality is implemented, nothing fancy.
+
+"when a famous persond dies" means when the famous person ends up in a major news RSS feed because of their death.  
 
 ### What is used to create this
 
