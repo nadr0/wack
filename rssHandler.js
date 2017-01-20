@@ -30,7 +30,7 @@ RssHandler.prototype.checkParsedXML = function(item) {
     } else {
 
         // Person did not die within 24 hours of this application running.
-        console.log('(X)  ', item['title']);
+        console.log('(X) [PubDate not within 24 hours of now] ', item['title']);
 
     }
 

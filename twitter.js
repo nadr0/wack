@@ -38,7 +38,7 @@ function makeTweet(status, cb) {
     }else {
 
         // Do not send tweet
-        console.log(status);
+        console.log('[PRINT ONLY MODE]  ',status);
 
     }
 

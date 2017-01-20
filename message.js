@@ -12,7 +12,12 @@ function Message() {
 
     // replace {-} with a name for some string.
     this.messages = [
-        '{-} is dead :( #RIP'
+        '{-} is dead :( #RIP',
+        'I miss {-} so much. #RIP',
+        'What will we do without {-}? #RIP',
+        'Who the fuck is {-}? They are #ded tho.',
+        'Sadly, {-} passed away. My thoughts are with the family. #RIP',
+        'Mourning the passing of {-}. #RIP'
     ];
 
 }
@@ -46,6 +51,7 @@ Message.prototype.create = function(search) {
 
         // Remove spaces from the persons name
         var hashtagPerson = search.replace(/\s+/g, '');
+        hashtagPerson = '#' + hashtagPerson;
 
         // Checking if the result from google knowledge graph is not null
         if(body != null) {
@@ -63,7 +69,7 @@ Message.prototype.create = function(search) {
             var tweet = _this.composeTweet(hashtagPerson, hashtags);
 
             twitter.tweet(tweet, function(){
-                console.log(tweet,' - posted a tweet');
+                console.log('[POSTED TWEET] ', tweet);
             })
 
         }else {
@@ -72,7 +78,7 @@ Message.prototype.create = function(search) {
             var tweet = _this.composeTweet(hashtagPerson);
 
             twitter.tweet(tweet, function(){
-                console.log(tweet, ' - posted a tweet');
+                console.log('[POSTED TWEET] ', tweet);
             })
 
         }
@@ -114,17 +120,13 @@ Message.prototype.createHashTags = function(text) {
   */
 Message.prototype.composeTweet = function(hashTagPerson, hashTags) {
 
-    var tweet = '';
+    var tweet = this.getMessage();
+
+    tweet = tweet.replace('{-}', hashTagPerson);
 
     if(hashTags) {
-
-        tweet = '#' + hashTagPerson + ' is dead :( #RIP ' + hashTags;
-
-    }else {
-
-        tweet = '#' + hashTagPerson + ' is dead :( #RIP ';
+        tweet = tweet + ' ' + hashTags
     }
-
 
     return tweet;
 }
