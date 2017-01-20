@@ -16,14 +16,10 @@ const wackApp = new wack({
     websites:{
         s1:"http://rss.nytimes.com/services/xml/rss/nyt/Obituaries.xml"
         // s1:"https://www.theguardian.com/tone/obituaries/rss",
-        // s2:"http://www.huffingtonpost.com/news/obituary/feed/"
+        // s1:"http://www.huffingtonpost.com/news/obituary/feed/"
     }
 });
-//
-// var google = require('./gkgs.js');
 
-// Files for client
-app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
     console.log('something getted');
