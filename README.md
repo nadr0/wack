@@ -123,8 +123,13 @@ Once the name is found it is searched with the google knowledge graph to get any
 
 Finally, the tweet is composed and sent along with saving it in the firebase database.
 
+##### Sample Tweets
+![ScreenShot](https://github.com/nadr0/wack/blob/master/doc/tweets-screenshot.png)
+
+
 Once the RSS feed is parsed the application is done and sits there so you can shut down the NER and node.js server. Think of running it as an executable as of right now. You can change ``site:"http://rss.nytimes.com/services/xml/rss/nyt/Obituaries.xml"`` to a different RSS feed then run the servers again to search for more tweets. This will be changed in the future to make it easier. 
 
 
 ### file/directory structure?
 I have files in the top level directory. 
+
