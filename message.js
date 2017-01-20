@@ -47,38 +47,33 @@ Message.prototype.create = function(search) {
         // Remove spaces from the persons name
         var hashtagPerson = search.replace(/\s+/g, '');
 
-        // value has results for extra info in tweet
+        // Checking if the result from google knowledge graph is not null
         if(body != null) {
 
+            var hashtags = '';
+
+            // Checks to see if the description property is present
             if(typeof(body.result.description) === 'string') {
 
                 // Get the hashtags to add at the end of the tweet
-                var hashtags = _this.createHashTags(body.result.description);
-
-                var tweet = '#' + hashtagPerson + ' is dead :( #RIP ' + hashtags;
-
-                if(!appOptions.PRINT_ONLY) {
-                    twitter.tweet(tweet, function(){
-                        console.log(tweet,' - posted a tweet');
-                    })
-                }else {
-                    console.log(tweet);
-                }
+                hashtags = _this.createHashTags(body.result.description);
 
             }
+
+            var tweet = _this.composeTweet(hashtagPerson, hashtags);
+
+            twitter.tweet(tweet, function(){
+                console.log(tweet,' - posted a tweet');
+            })
 
         }else {
-            // basic tweet
+            // basic tweet, no hashtags
 
-            var tweet = '#'+ hashtagPerson + ' is dead :( #RIP';
+            var tweet = _this.composeTweet(hashtagPerson);
 
-            if(!appOptions.PRINT_ONLY) {
-                twitter.tweet(tweet, function(){
-                    console.log(tweet, ' - posted a tweet');
-                })
-            }else {
-                console.log(tweet);
-            }
+            twitter.tweet(tweet, function(){
+                console.log(tweet, ' - posted a tweet');
+            })
 
         }
 
@@ -93,6 +88,10 @@ Message.prototype.create = function(search) {
   */
 Message.prototype.createHashTags = function(text) {
 
+    if(!text) {
+        return '';
+    }
+
     // Google description result can have hyphens/dashes in the results so remove any and replace with a space.
     text = text.replace(/-+/g,' ');
 
@@ -105,6 +104,29 @@ Message.prototype.createHashTags = function(text) {
     // hashtag string
     return text;
 
+}
+
+/**
+  * Creates the string to tweet given the name of the person and hashtags
+  * @param {string} hashTagPerson  - the person's name in hashtag form
+  * @param {string} hashTags - at least one or more hashtags in a row
+  * @return {string} tweet - the tweet
+  */
+Message.prototype.composeTweet = function(hashTagPerson, hashTags) {
+
+    var tweet = '';
+
+    if(hashTags) {
+
+        tweet = '#' + hashTagPerson + ' is dead :( #RIP ' + hashTags;
+
+    }else {
+
+        tweet = '#' + hashTagPerson + ' is dead :( #RIP ';
+    }
+
+
+    return tweet;
 }
 
 /**

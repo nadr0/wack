@@ -9,6 +9,7 @@ const tokenSecret = process.env.ACCESS_TOKEN_SECRET;
 const port        = process.env.NODE_SERVER_PORT;
 const domain      = process.env.NODE_DOMAIN;
 
+var appOptions = require('./appOptions.js').options;
 var OAuth = require('oauth').OAuth;
 var oa;
 
@@ -17,19 +18,29 @@ var site = "https://api.twitter.com/1.1/statuses/update.json";
 
 function makeTweet(status, cb) {
 
-    oa = new OAuth(
-        "https://twitter.com/oauth/request_token"
-      , "https://twitter.com/oauth/access_token"
-      , KEY
-      , SECRET
-      , "1.0A"
-      , "http://" + domain + ":" + port + "/"
-      , "HMAC-SHA1"
-      );
+    if(!appOptions.PRINT_ONLY) {
 
-    var statusToTweet = {"status": status};
+        // Send tweet
+        oa = new OAuth(
+            "https://twitter.com/oauth/request_token"
+          , "https://twitter.com/oauth/access_token"
+          , KEY
+          , SECRET
+          , "1.0A"
+          , "http://" + domain + ":" + port + "/"
+          , "HMAC-SHA1"
+          );
 
-    oa.post(site, token, tokenSecret, statusToTweet, cb);
+        var statusToTweet = {"status": status};
+
+        oa.post(site, token, tokenSecret, statusToTweet, cb);
+
+    }else {
+
+        // Do not send tweet
+        console.log(status);
+
+    }
 
 }
 

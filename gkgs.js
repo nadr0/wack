@@ -26,6 +26,8 @@ function makeGoogleRequest(search, callback) {
            // check if there is one result
            if(body.itemListElement.length > 0) {
 
+               // This takes the top result from the query
+               // Top result is usually the wikipedia article of the person
                callback(body.itemListElement[0]);
 
            }else {
