@@ -131,6 +131,36 @@ Finally, the tweet is composed and sent along with saving it in the firebase dat
 
 Once the RSS feed is parsed the application is done and sits there so you can shut down the NER and node.js server. Think of running it as an executable as of right now. You can change ``site:"http://rss.nytimes.com/services/xml/rss/nyt/Obituaries.xml"`` to a different RSS feed then run the servers again to search for more tweets. This will be changed in the future to make it easier. 
 
+##### Example Terminal Output
+```
+Application Running.
+Making request:  http://rss.nytimes.com/services/xml/rss/nyt/Obituaries.xml
+(X) [PubDate not within 24 hours of now]  Roberta Peters, Soprano With a Dramatic Entrance, Dies at 86
+(X) [PubDate not within 24 hours of now]  George Beall, Prosecutor Who Brought Down Agnew, Dies at 79
+(X) [PubDate not within 24 hours of now]  James S. Ackerman, Author of Enduring Books on Architecture, Dies at 97
+(X) [PubDate not within 24 hours of now]  Among Deaths in 2016, a Heavy Toll in Pop Music
+(X) [PubDate not within 24 hours of now]  Lois Dickson Rice, Trailblazing Executive Behind Pell Grants, Dies at 83
+(X) [PubDate not within 24 hours of now]  Nicky Scarfo, Mob Boss Who Plundered Atlantic City in the ’80s, Dies at 87
+(X) [PubDate not within 24 hours of now]  Bishop Eddie L. Long, Accused of Sexual Misconduct, Dies at 63
+(X) [PubDate not within 24 hours of now]  Hans Berliner, Master Chess Player and Programmer, Dies at 87
+(X) [PubDate not within 24 hours of now]  Dick Gautier, Who Played a Rock Star in ‘Bye Bye Birdie,’ Is Dead
+(X) [PubDate not within 24 hours of now]  Kevin Starr, Prolific Chronicler of California’s History, Dies at 76
+(X) [PubDate not within 24 hours of now]  Jimmy Snuka, Ex-Pro Wrestler Known as Superfly, Dies at 73
+(X) [PubDate not within 24 hours of now]  2016 Was a Bad Year for Celebrity Deaths, by These Measures
+(X) [PubDate not within 24 hours of now]  Conservationist Bud Lilly, ‘a Trout’s Best Friend,’ Dies at 91
+(X) [PubDate not within 24 hours of now]  Tony Rosato, of 1981-82 ‘Saturday Night Live’ Cast, Dies at 62
+(X) [PubDate not within 24 hours of now]  The Comedic Side of William Peter Blatty, the Author of ‘The Exorcist’
+(X) [PubDate not within 24 hours of now]  Zhou Youguang, Who Made Writing Chinese as Simple as ABC, Dies at 111
+(X) [PubDate not within 24 hours of now]  Tommy Allsup, Guitarist, Dies at 85; a Coin Toss Saved His Life
+(X) [PubDate not within 24 hours of now]  Buddy Greco, Singer Who Had That Swing, Dies at 90
+(X) [PubDate not within 24 hours of now]  William Peter Blatty, Author of ‘The Exorcist,’ Dies at 89
+(Firebase)  Henry J Foner marked as seen.
+(Firebase)  William Onyeabor marked as seen.
+(Firebase)  Roberta Peters marked as seen.
+[POSTED TWEET]  What will we do without #WilliamOnyeabor? #RIP #Musician
+[POSTED TWEET]  Mourning the passing of #HenryJFoner. #RIP
+[POSTED TWEET]  What will we do without #RobertaPeters? #RIP #Singer
+```
 
 ### file/directory structure?
 I have files in the top level directory. 
