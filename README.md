@@ -4,6 +4,8 @@ Basic functionality is implemented, nothing fancy.
 
 "when a famous person dies" means when the famous person ends up in a major news RSS feed because of their death.  
 
+This is not a news source. This is supposed to be an automatic way of posting ``personalized`` tweets about someone who has died. 
+
 ### What is used to create this
 
 - [node.js](https://nodejs.org/en/)
